@@ -8,13 +8,13 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/output.css' %}" type="text/css"> <!-- We add the output Tailwind CSS here -->
 </head>
-<body class="h-screen flex justify-center items-center bg-purple-300">
+<body class="flex items-center justify-center h-screen bg-blue-300">
 
 <div class="w-3/5 m-auto">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
         <div class="grid gap-4">
             <div>
-                <img class="h-auto max-w-full rounded-lg shadow shadow-lg" src="{{ photo_1 }}" alt="">
+                <img class="h-auto max-w-full rounded-lg shadow-lg" src="{{ photo_1 }}" alt="">
             </div>
             <div>
                 <img class="h-auto max-w-full rounded-lg shadow" src="{{ photo_2 }}" alt="">

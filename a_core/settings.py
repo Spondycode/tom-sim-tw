@@ -3,11 +3,12 @@ Django settings for a_core project.
 """
 
 from pathlib import Path
+from environ import Env
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-from environ import Env
 
 env = Env(
 # set casting, default value
@@ -23,7 +24,7 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # Change to your domain name when deploying
 
 
 # Application definition
@@ -78,6 +79,10 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+POSTGRES_LOCALLY = False # Set to True if you want to use postgres locally
+if ENVIRONMENT == 'production' or POSTGRES_LOCALLY is True:
+    DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
 
 
 # Password validation

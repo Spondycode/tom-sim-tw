@@ -7,15 +7,21 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from environ import Env
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+env = Env(
+# set casting, default value
+DEBUG=(bool, False))
+# reading .env file
+Env.read_env()
+ENVIRONMENT = env('ENVIRONMENT', default='development')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-!vrczq&)kou_)@#$$ab#6&geg1mb16lxb2%!^(#1c7ql_-4xmv"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = env('SECRET_KEY')
+# ENCRYPT_KEY = env('ENCRYPT_KEY')
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
